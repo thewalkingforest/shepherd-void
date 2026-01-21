@@ -6,5 +6,13 @@
     #:stop (make-kill-destructor)
     #:respawn? #t))
 
-(register-services (list agetty-tty1))
-(start-in-the-background '(agetty-tty1))
+(define dhcpcd
+  (service
+    '(dhcpcd)
+    #:start (make-forkexec-constructor
+              '("dhcpcd" "-B" "-M"))
+    #:stop (make-kill-destructor)
+    #:respawn? #t))
+
+(register-services (list agetty-tty1 dhcpcd))
+(start-in-the-background '(agetty-tty1 dhcpcd))
