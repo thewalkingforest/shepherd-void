@@ -83,6 +83,27 @@ else
 fi
 
 # ===========================
+# 01 - static devnodes
+# ===========================
+
+# Some kernel modules must be loaded before starting udev(7).
+# Load them by looking at the output of `kmod static-nodes`.
+
+for f in $(kmod static-nodes -f devname 2>/dev/null|cut -d' ' -f1); do
+	modprobe -bq $f 2>/dev/null
+done
+
+# ===========================
+# 01 - kmods
+# ===========================
+
+if [ -e /proc/modules ]; then
+    msg "Loading kernel modules..."
+    modules-load -v | tr '\n' ' ' | sed 's:insmod [^ ]*/::g; s:\.ko\(\.gz\)\? ::g'
+    echo
+fi
+
+# ===========================
 # 02 - Setting up udev
 # ===========================
 
@@ -135,18 +156,8 @@ fi
 # 03 - Setting up Filesystems
 # ===========================
 
-msg "Mounting pseudo-filesystems..."
-mount -t proc proc /proc
-mount -t sysfs sys /sys
-mount -t devtmpfs dev /dev
-
-msg "Mounting /run..."
-mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs /run
-mkdir -p /run/shepherd
-
-mount -o remount,rw /
 msg "Remounting rootfs read-only..."
-mount -o remount,ro / || emergency_shell
+LIBMOUNT_FORCE_MOUNT2=always mount -o remount,ro / || emergency_shell
 
 [ -f /fastboot ] && FASTBOOT=1
 [ -f /forcefsck ] && FORCEFSCK="-f"
@@ -158,7 +169,7 @@ for arg in $(cat /proc/cmdline); do
 done
 
 if [ -z "$FASTBOOT" ]; then
-    msg "Checking filesystems..."
+    msg "Checking filesystems:"
     fsck -A -T -a -t noopts=_netdev $FORCEFSCK
     if [ $? -gt 1 ]; then
         emergency_shell
@@ -166,11 +177,10 @@ if [ -z "$FASTBOOT" ]; then
 fi
 
 msg "Mounting rootfs read-write..."
-mount -o remount,rw / || emergency_shell
+LIBMOUNT_FORCE_MOUNT2=always mount -o remount,rw / || emergency_shell
 
 msg "Mounting all non-network filesystems..."
-mount -a -O no_netdev || emergency_shell
-
+mount -a -t "nosysfs,nonfs,nonfs4,nosmbfs,nocifs" -O no_netdev || emergency_shell
 
 # ====================
 # 04 - Setting up Swap
