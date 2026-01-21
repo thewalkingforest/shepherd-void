@@ -4,6 +4,11 @@ msg() {
     printf "\033[1m=> $@\033[m\n"
 }
 
+msg_warn() {
+    # bold/yellow
+    printf "\033[1m\033[33mWARNING: $@\033[m\n"
+}
+
 emergency_shell() {
     echo
     echo "Cannot continue due to errors above, starting emergency shell."
