@@ -5,3 +5,4 @@
               '("agetty" "--noclear" "tty1" "38400" "linux"))
     #:stop (make-kill-destructor)
     #:respawn? #t))
+(register-services (list agetty-tty1))
