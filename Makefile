@@ -5,6 +5,7 @@ all:
 
 
 install:
+	install -d ${DESTDIR}/${PREFIX}/etc
 	install -m644 rc.conf ${DESTDIR}/etc
 	install -m755 rc.local ${DESTDIR}/etc
 	install -m755 rc.shutdown ${DESTDIR}/etc
