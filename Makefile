@@ -11,6 +11,7 @@ install:
 	install -m755 rc.shutdown ${DESTDIR}/etc
 	install -m755 seedrng ${DESTDIR}/${PREFIX}/sbin/seedrng
 	install -m644 shepherd.scm ${DESTDIR}/${PREFIX}/etc
+	install -m644 shepherd-init.sh ${DESTDIR}/${PREFIX}/sbin
 	install -d ${DESTDIR}/${PREFIX}/etc/shepherd.d
 	install -m644 agetty-tty1.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
 	install -m644 agetty-tty2.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
