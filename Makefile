@@ -13,12 +13,12 @@ install:
 	install -m644 shepherd.scm ${DESTDIR}/${PREFIX}/etc
 	install -m644 shepherd-init.sh ${DESTDIR}/${PREFIX}/sbin
 	install -d ${DESTDIR}/${PREFIX}/etc/shepherd.d
-	install -m644 agetty-tty1.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
-	install -m644 agetty-tty2.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
-	install -m644 agetty-tty3.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
-	install -m644 agetty-tty4.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
-	install -m644 agetty-tty5.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
-	install -m644 agetty-tty5.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
-	install -m644 shutdown-tasks.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
+	install -m644 services/agetty-tty1.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
+	install -m644 services/agetty-tty2.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
+	install -m644 services/agetty-tty3.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
+	install -m644 services/agetty-tty4.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
+	install -m644 services/agetty-tty5.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
+	install -m644 services/agetty-tty5.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
+	install -m644 services/shutdown-tasks.scm ${DESTDIR}/${PREFIX}/etc/shepherd.d
 
 .PHONY: all install
