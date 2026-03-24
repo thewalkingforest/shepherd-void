@@ -2,7 +2,7 @@
              (shepherd service repl)
              (ice-9 ftw))
 
-(let ((services-dir  "/usr/etc/shepherd.d"))
+(let ((services-dir  "/etc/shepherd.d"))
   (for-each
     (lambda (file)
       (when (string-suffix? ".scm" file)

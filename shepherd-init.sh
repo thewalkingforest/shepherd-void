@@ -282,6 +282,6 @@ rm -f /etc/nologin /forcefsck /forcequotacheck /fastboot
 # ====================
 
 msg "Starting shepherd..."
-exec /sbin/shepherd
+exec /sbin/shepherd -c /etc/shepherd.scm
 
 # vim: set ft=sh ts=4 sw=4 et
