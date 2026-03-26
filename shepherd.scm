@@ -1,15 +1,9 @@
 (use-modules (shepherd service timer)
              (shepherd service repl)
-             (ice-9 ftw))
+             (ice-9 ftw)
+             (blackcat shepherd))
 
-(let ((services-dir  "/etc/shepherd.d"))
-  (for-each
-    (lambda (file)
-      (when (string-suffix? ".scm" file)
-        (load (string-append services-dir "/" file))))
-    (or (scandir services-dir
-                 (lambda (f) (string-suffix? ".scm" f)))
-        '())))
+(load-services-dir "/etc/shepherd.d")
 
 (register-services (list (repl-service)))
 (start-in-the-background
