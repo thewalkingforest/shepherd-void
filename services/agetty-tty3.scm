@@ -1,8 +1,7 @@
-(define agetty-tty3
+(register-services (list
   (service
     '(agetty-tty3)
     #:start (make-forkexec-constructor
               '("agetty" "tty3" "38400" "linux"))
     #:stop (make-kill-destructor)
-    #:respawn? #t))
-(register-services (list agetty-tty3))
+    #:respawn? #t)))
