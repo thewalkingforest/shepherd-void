@@ -21,4 +21,7 @@ install:
 	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/service-autoloader.scm
 	install -m755 -D -t ${DESTDIR}/${PREFIX}/bin service-autoloader
 
-.PHONY: all install
+clean:
+	$(RM) seedrng
+
+.PHONY: all install clean
