@@ -1,7 +1,7 @@
 (register-services (list
   (service
-    '(service-watcher)
+    '(service-autoloader)
     #:start (make-forkexec-constructor
-              '("service-watcher"))
+              '("service-autoloader"))
     #:stop (make-kill-destructor)
     #:respawn? #t)))

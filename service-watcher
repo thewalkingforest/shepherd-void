@@ -1,5 +1,0 @@
-#!/usr/bin/env -S guile --no-auto-compile
--*- scheme -*-
-!#
-
-(apply (@ (blackcat scripts service-watcher) main) (cdr (command-line)))

@@ -18,6 +18,6 @@ install:
 	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/agetty-tty5.scm
 	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/agetty-tty5.scm
 	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/shutdown-tasks.scm
-	install -m755 -D -t ${DESTDIR}/${PREFIX}/bin service-watcher
+	install -m755 -D -t ${DESTDIR}/${PREFIX}/bin service-autoloader
 
 .PHONY: all install
