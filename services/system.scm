@@ -1,0 +1,3 @@
+(register-services
+  (service
+    '(system)))
