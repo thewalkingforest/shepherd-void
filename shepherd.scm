@@ -1,7 +1,7 @@
 (use-modules (shepherd service repl)
              (blackcat shepherd))
 
-(load-services-dir "/etc/shepherd.d")
+(load-services-dir)
 
 (register-services (list (repl-service)))
 (start-in-the-background

@@ -16,8 +16,6 @@ emergency_shell() {
     /bin/sh -l
 }
 
-[ -x /etc/rc.shutdown ] && /etc/rc.shutdown
-
 # ================
 # 30 - seedrng
 # ================
