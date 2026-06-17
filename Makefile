@@ -11,14 +11,6 @@ install:
 	install -m755 -D -t ${DESTDIR}/${PREFIX}/sbin/seedrng seedrng
 	install -m644 -D -t ${DESTDIR}/etc shepherd.scm
 	install -m644 -D -t ${DESTDIR}/${PREFIX}/sbin shepherd-init.sh
-	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/agetty-tty1.scm
-	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/agetty-tty2.scm
-	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/agetty-tty3.scm
-	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/agetty-tty4.scm
-	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/agetty-tty5.scm
-	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/agetty-tty5.scm
-	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/shutdown-tasks.scm
-	install -m644 -D -t ${DESTDIR}/etc/shepherd.d services/service-autoloader.scm
 	install -m755 -D -t ${DESTDIR}/${PREFIX}/bin service-autoloader
 
 clean:
