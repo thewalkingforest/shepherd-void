@@ -1,17 +1,19 @@
-DESTDIR =
+DESTDIR=
 PREFIX ?= /usr/local
 
 all:
 	$(CC) $(CFLAGS) seedrng.c -o seedrng $(LDFLAGS)
 
 install:
-	install -m644 -D -t ${DESTDIR}/etc rc.conf
-	install -m755 -D -t ${DESTDIR}/etc rc.local
-	install -m755 -D -t ${DESTDIR}/etc rc.shutdown
-	install -m755 -D -t ${DESTDIR}/${PREFIX}/sbin/seedrng seedrng
-	install -m644 -D -t ${DESTDIR}/etc shepherd.scm
-	install -m755 -D -t ${DESTDIR}/${PREFIX}/bin shepherd-init.sh
-	install -m755 -D -t ${DESTDIR}/${PREFIX}/bin service-autoloader
+	install -d ${DESTDIR}/etc
+	install -m644 rc.conf      ${DESTDIR}/etc
+	install -m755 rc.local     ${DESTDIR}/etc
+	install -m755 rc.shutdown  ${DESTDIR}/etc
+	install -m644 shepherd.scm ${DESTDIR}/etc
+	install -d ${DESTDIR}/${PREFIX}/bin
+	install -m755 seedrng           ${DESTDIR}/${PREFIX}/bin
+	install -m755 shepherd-init.sh  ${DESTDIR}/${PREFIX}/bin
+	install -m755 service-autoloader ${DESTDIR}/${PREFIX}/bin
 
 clean:
 	$(RM) seedrng
